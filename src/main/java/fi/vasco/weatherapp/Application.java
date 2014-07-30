@@ -33,8 +33,10 @@ public class Application {
 		try {
 			forecastService.fetchDataForCities();
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 	}
 
+	
 }
+
