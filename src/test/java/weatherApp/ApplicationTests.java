@@ -13,8 +13,6 @@ import fi.vasco.weatherapp.Application;
 @WebAppConfiguration
 public class ApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+	
 
 }

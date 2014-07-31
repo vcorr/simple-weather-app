@@ -22,6 +22,8 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -47,51 +49,43 @@ public class ForecastServiceImpl implements ForecastService {
 	private CityForecastRepository cityForecastRepository;
 
 	@Override
+	@Cacheable("forecasts")
 	public List<ForecastDTO> getForecastsForCities() {
+		
 		List<City> cities = cityRepository.findByMajorCityTrue();
-
 		List<ForecastDTO> forecastList = new ArrayList<ForecastDTO>();
-
-		for (Iterator<City> iterator = cities.iterator(); iterator.hasNext();) {
-			City city = (City) iterator.next();
-
+		
+		for (City city : cities) {
 			ForecastDTO dto = new ForecastDTO();
 			dto.setCityName(city.getName());
 			dto.setCityCoords(city.getLat(), city.getLon());
 
 			List<MeasurementDTO> measurements = cityForecastRepository.getMeasurementDTOByCity(city);
-
-			if (city.getName().equals("Tampere")) {
-				System.out.println("Tampere");
-				System.out.println(measurements.size());
-				System.out.println(new DateTime(measurements.get(0).getDate()));
-				System.out.println(new DateTime(measurements.get(1).getDate()));
-				System.out.println(new DateTime(measurements.get(2).getDate()));
-				System.out.println(new DateTime(measurements.get(3).getDate()));
-				System.out.println(new DateTime(measurements.get(4).getDate()));
-				System.out.println(new DateTime(measurements.get(5).getDate()));
-				System.out.println(measurements.get(0).getValue());
-			}
-
 			dto.setMeasurementDTO(measurements);
+			
 			forecastList.add(dto);
 		}
 		return forecastList;
 	}
 
+	/***
+	 * fetchDataForCities
+	 * 
+	 * Fetches new forecasts for cities from the FMI Open Data interface.
+	 * Database is updated accordingly and cache is cleared.
+	 */
 	@Override
+	@CacheEvict("forecasts")
 	public void fetchDataForCities() throws Exception {
-
 		DateTime now = new DateTime(DateTimeZone.UTC);
-		DateTime hourForward = now.plusMinutes(6 * 60);
-		String endtime = formatter.print(hourForward);
+		DateTime sixHoursForward = now.plusMinutes(6 * 60);
+		String endtime = formatter.print(sixHoursForward);
 		String measurementsQuery = QUERY;
 		measurementsQuery += "endtime=" + endtime + "&";
 		measurementsQuery += "parameters=WeatherSymbol3";
 
 		URL myURL = new URL(FMIURL + measurementsQuery);
 
-		System.out.println("QUERY:" + measurementsQuery);
 		HttpURLConnection myURLConnection = (HttpURLConnection) myURL.openConnection();
 
 		if (myURLConnection.getResponseCode() != 200) {
@@ -117,7 +111,7 @@ public class ForecastServiceImpl implements ForecastService {
 			String name = getLocationName(nodeList.item(i), xPath);
 			Map<Date, Measurement> measurementsMap = getValues(nodeList.item(i), xPath);
 
-			// should return 1 city
+			// should return exactly 1 city
 			List<City> cityList = cityRepository.findByName(name);
 
 			// get existing forecasts for the city
@@ -125,57 +119,39 @@ public class ForecastServiceImpl implements ForecastService {
 
 			Date currentDate = new Date();
 
-			for (Iterator<CityForecast> iterator = forecastList.iterator(); iterator.hasNext();) {
-				CityForecast cityForecast = (CityForecast) iterator.next();
+			for(CityForecast cityForecast : forecastList) {
 				Date forecastDate = cityForecast.getDate();
 
 				if (forecastDate.before(currentDate)) {
-					System.out.println("Forecast id: " + cityForecast.getId() + " is out of date, deleting");
 					cityForecastRepository.delete(cityForecast.getId());
 					continue;
 				}
 
-				// does this date exists in current measurements? if yes, then
-				// update
 				DateTime dateTime = new DateTime(cityForecast.getDate());
 				if (measurementsMap.containsKey(dateTime.toDate())) {
 					Measurement m = measurementsMap.get(dateTime.toDate());
 					if (!cityForecast.getValue().equals(m.measurementValue)) {
-						System.out.println("Updating Forecast id: " + cityForecast.getId());
 						cityForecast.setValue(m.measurementValue);
 						cityForecastRepository.saveAndFlush(cityForecast);
-					} else {
-						System.out.println("Forecast value had not changed, do nothing");
 					}
-
 					measurementsMap.remove(dateTime.toDate());
 					continue;
 				}
 			}
 
-			// get remaining measurements and add them to the city
+			// get remaining measurements and add them to the city as new
 			java.util.Set<Date> keys = measurementsMap.keySet();
-			for (Iterator<Date> iterator = keys.iterator(); iterator.hasNext();) {
-				Date date = (Date) iterator.next();
+			for(Date date : keys) {
 				Measurement m = measurementsMap.get(date);
-				System.out.println("Adding new Forecast for " + cityList.get(0).getName());
 				CityForecast cityForecast = CityForecast.getBuilder(cityList.get(0), m.measurementTime, "cond",
 						m.measurementValue).build();
 				cityForecastRepository.saveAndFlush(cityForecast);
-
 			}
-
 		}
 	}
 
 	private String getLocationName(Node rootNode, XPath xPath) throws Exception {
 		String childexpression = ".//*[local-name()='Location']/name";
-		NodeList nodeChildList = (NodeList) xPath.compile(childexpression).evaluate(rootNode, XPathConstants.NODESET);
-		return nodeChildList.item(0).getTextContent();
-	}
-
-	private String getLocationPosition(Node rootNode, XPath xPath) throws Exception {
-		String childexpression = ".//*[local-name()='Point']/pos";
 		NodeList nodeChildList = (NodeList) xPath.compile(childexpression).evaluate(rootNode, XPathConstants.NODESET);
 		return nodeChildList.item(0).getTextContent();
 	}
@@ -186,8 +162,7 @@ public class ForecastServiceImpl implements ForecastService {
 
 		NodeList measurementTimeList = (NodeList) xPath.compile(".//*[local-name()='MeasurementTVP']/time").evaluate(
 				rootNode, XPathConstants.NODESET);
-		System.out.println("LIST" + measurementTimeList.getLength());
-
+		
 		NodeList measurementValueList = (NodeList) xPath.compile(".//*[local-name()='MeasurementTVP']/value").evaluate(
 				rootNode, XPathConstants.NODESET);
 
@@ -198,7 +173,6 @@ public class ForecastServiceImpl implements ForecastService {
 			measurementMap.put(measurement.measurementTime, measurement);
 		}
 
-		System.out.println("map:" + measurementMap.size());
 		return measurementMap;
 	}
 

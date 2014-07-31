@@ -12,7 +12,7 @@ import fi.vasco.weatherapp.service.MeasurementDTO;
 
 public interface CityForecastRepository extends JpaRepository<CityForecast, Long> {
 
-	@Query("Select new fi.vasco.weatherbot.service.MeasurementDTO(cf.date, cf.type, cf.value) from CityForecast cf where cf.city = :city ORDER BY cf.date")
+	@Query("Select new fi.vasco.weatherapp.service.MeasurementDTO(cf.date, cf.type, cf.value) from CityForecast cf where cf.city = :city ORDER BY cf.date")
 	public List<MeasurementDTO> getMeasurementDTOByCity(@Param("city") City city);
 
 	public List<CityForecast> findByCity(City city);

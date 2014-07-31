@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>fi.vasco</groupId>
-	<artifactId>weatherApp</artifactId>
+	<artifactId>weatherApp2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>weatherBot</name>
-	<description>Weather Bot app</description>
+	<name>weatherApp2</name>
+	<description>Weather App 2</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -32,6 +32,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-twitter</artifactId>
@@ -39,18 +40,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
-		</dependency>
-
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
 		</dependency>
-
-
 
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -64,6 +57,13 @@
 			<version>1.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>2.8.3</version>
+		</dependency>
+
+	
 
 
 		<dependency>
@@ -71,11 +71,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
 	</dependencies>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>fi.vasco.weatherbot.Application</start-class>
+		<start-class>fi.vasco.weatherapp.Application</start-class>
 		<java.version>1.7</java.version>
 	</properties>
 
@@ -88,5 +94,5 @@
 		</plugins>
 	</build>
 
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 </project>
