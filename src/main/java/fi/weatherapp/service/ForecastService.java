@@ -1,4 +1,4 @@
-package fi.vasco.weatherapp.service;
+package fi.weatherapp.service;
 
 import java.util.List;
 

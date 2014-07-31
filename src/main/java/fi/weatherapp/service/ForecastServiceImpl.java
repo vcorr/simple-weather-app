@@ -1,4 +1,4 @@
-package fi.vasco.weatherapp.service;
+package fi.weatherapp.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -29,10 +29,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fi.vasco.weatherapp.model.City;
-import fi.vasco.weatherapp.model.CityForecast;
-import fi.vasco.weatherapp.repository.CityForecastRepository;
-import fi.vasco.weatherapp.repository.CityRepository;
+import fi.weatherapp.model.City;
+import fi.weatherapp.model.CityForecast;
+import fi.weatherapp.repository.CityForecastRepository;
+import fi.weatherapp.repository.CityRepository;
 
 @Repository
 public class ForecastServiceImpl implements ForecastService {

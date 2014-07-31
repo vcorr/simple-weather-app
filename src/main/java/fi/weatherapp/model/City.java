@@ -1,4 +1,4 @@
-package fi.vasco.weatherapp.model;
+package fi.weatherapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package fi.vasco.weatherapp;
+package fi.weatherapp;
 
 import javax.annotation.Resource;
 
@@ -11,13 +11,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import fi.vasco.weatherapp.service.ForecastService;
+import fi.weatherapp.service.ForecastService;
 
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
 @EnableScheduling
-@EnableJpaRepositories(basePackages = { "fi.vasco.weatherapp" })
+@EnableJpaRepositories(basePackages = { "fi.weatherapp" })
 @EnableCaching
 public class Application {
 

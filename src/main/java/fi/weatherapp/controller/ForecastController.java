@@ -1,4 +1,4 @@
-package fi.vasco.weatherapp.controller;
+package fi.weatherapp.controller;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import fi.vasco.weatherapp.service.ForecastDTO;
-import fi.vasco.weatherapp.service.ForecastService;
+import fi.weatherapp.service.ForecastDTO;
+import fi.weatherapp.service.ForecastService;
 
 @RestController
 @RequestMapping("/forecast")
