@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class City {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	private String name;

@@ -118,7 +118,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 		String timestamp = doc.getChildNodes().item(0).getAttributes()
 				.getNamedItem("timeStamp").getNodeValue();
 		DateTime timestampInDoc = DateTime.parse(timestamp);
-		System.out.println("TIMESTAMP:" + timestamp);
+		
 
 		String expression = "//*[local-name()='PointTimeSeriesObservation']";
 
@@ -155,6 +155,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 						cityForecast.setValue(m.measurementValue);
 						cityForecastRepository.saveAndFlush(cityForecast);
 					}
+					
 					measurementsMap.remove(dateTime.toDate());
 					continue;
 				}
@@ -170,6 +171,8 @@ public class UpdaterServiceImpl implements UpdaterService {
 				cityForecastRepository.saveAndFlush(cityForecast);
 			}
 		}
+
+		logger.debug("Done.");
 	}
 
 	private String getLocationName(Node rootNode, XPath xPath) throws Exception {

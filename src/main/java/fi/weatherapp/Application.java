@@ -31,9 +31,10 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Scheduled(fixedRate = 60 * 60 * 1000)
+	@Scheduled(fixedRate = 5 * 60 * 1000)
 	private void updateStationData() {
 		try {
+			logger.debug("Fetching fresh data from FMI");
 			updaterService.fetchDataForCities();
 		} catch (Exception e) {
 			logger.error("Failed to fetch new forecasts:");
