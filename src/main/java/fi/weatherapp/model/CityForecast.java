@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class CityForecast {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 
 	@ManyToOne

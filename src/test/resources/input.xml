@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection
+    timeStamp="2014-08-01T06:08:28Z"
+    numberMatched="109"
+    numberReturned="109"
+    xmlns:wfs="http://www.opengis.net/wfs/2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:omso="http://inspire.ec.europa.eu/schemas/omso/2.0rc3"
+    xmlns:ompr="http://inspire.ec.europa.eu/schemas/ompr/2.0rc3"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:swe="http://www.opengis.net/swe/2.0"
+    xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
+    xmlns:sam="http://www.opengis.net/sampling/2.0"
+    xmlns:sams="http://www.opengis.net/samplingSpatial/2.0"
+    xmlns:wml2="http://www.opengis.net/waterml/2.0"
+    xmlns:target="http://xml.fmi.fi/namespace/om/atmosphericfeatures/0.95"
+    xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd
+    http://www.opengis.net/gmlcov/1.0 http://schemas.opengis.net/gmlcov/1.0/gmlcovAll.xsd
+    http://www.opengis.net/sampling/2.0 http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd
+    http://www.opengis.net/samplingSpatial/2.0 http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd
+    http://www.opengis.net/swe/2.0 http://schemas.opengis.net/sweCommon/2.0/swe.xsd
+    http://inspire.ec.europa.eu/schemas/omso/2.0rc3 http://inspire.ec.europa.eu/draft-schemas/omso/2.0rc3/SpecialisedObservations.xsd
+    http://inspire.ec.europa.eu/schemas/ompr/2.0rc3 http://inspire.ec.europa.eu/draft-schemas/ompr/2.0rc3/Processes.xsd
+    http://www.opengis.net/waterml/2.0 http://inspire.ec.europa.eu/draft-schemas/waterml/2.0rfc/waterml2.xsd
+    http://xml.fmi.fi/namespace/om/atmosphericfeatures/0.95 http://xml.fmi.fi/schema/om/atmosphericfeatures/0.95/atmosphericfeatures.xsd">
+
+    
+    <wfs:member>
+        <omso:PointTimeSeriesObservation gml:id="WFS-MP3lTK.OhklhUQ.RWzu2f4AGrAeJTowtYWbbpdOs2_llx4efR060aeWzDtdOufXlmw48rp1j09NOXm6ddNO3L2w7OuXhh08oWliy59O6pp25bX30KhC.ZamNj5c61ItCnHdOmjJq4Z2XdkqaduW199CoQuGtUJwZtO7JOy4eWXn0rYdmnJIZmfLv05OdZzNg0Yt2bJpbMvbLsqeeGWpmbN.PDsy1qZtN.NJXdemZw1tuHxE08.mHdjy04A1tunnz07s9TL46VjTsM5lbd.TLsrq0aeWzDtv5evLfv4cMN_hp3dMLK4YeWHbW5Xy4emjLyp.duLfsZtzn038suTj1y8vN_TkrrCzbdLp1m38suPDz6OnWjTy2Ydrp1z68s2HHldOsenppy83Trpp25e2HZ1y8MOnk0Omnblp9MvCfkJodNO3La37stY1WpDA--WeatherSymbol3">
+	                     <om:phenomenonTime>
+                <gml:TimePeriod gml:id="time-interval-1-1">
+                    <gml:beginPosition>2014-08-01T07:00:00Z</gml:beginPosition>
+                    <gml:endPosition>2014-08-01T12:00:00Z</gml:endPosition>
+                </gml:TimePeriod>
+            </om:phenomenonTime>
+            <om:resultTime>
+                <gml:TimeInstant gml:id="time-1-1">
+                    <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition>
+                </gml:TimeInstant>
+            </om:resultTime> 
+
+	    <om:procedure xlink:href="http://xml.fmi.fi/inspire/process/hirlam"/>
+	                <om:parameter>
+                <om:NamedValue>
+                    <om:name xlink:href="http://inspire.ec.europa.eu/codeList/ProcessParameterValue/value/numericalModel/analysisTime"/>
+                    <om:value>
+                        <gml:TimeInstant gml:id="analysis-time-1-1-WeatherSymbol3--"> 
+                            <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition> 
+                        </gml:TimeInstant>
+                    </om:value>
+                </om:NamedValue>
+            </om:parameter>
+
+            <om:observedProperty  xlink:href="http://data.fmi.fi/fmi-apikey/d78b8496-9c5f-4ad1-8ee1-d22fa4d9e786/meta?observableProperty=forecast&amp;param=WeatherSymbol3&amp;language=eng"/>
+	                <om:featureOfInterest>
+                <sams:SF_SpatialSamplingFeature gml:id="enn-s-1-1-WeatherSymbol3">
+          <sam:sampledFeature>
+		<target:LocationCollection gml:id="sampled-target-1-1-WeatherSymbol3">
+		    <target:member>
+		    <target:Location gml:id="forloc-geoid-3041732-pos-WeatherSymbol3">
+		        <gml:identifier codeSpace="http://xml.fmi.fi/namespace/stationcode/geoid">3041732</gml:identifier>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/name">Mariehamn</gml:name>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/geoid">3041732</gml:name>
+			<target:representativePoint xlink:href="#point-3041732-WeatherSymbol3"/>
+			<target:country codeSpace="http://xml.fmi.fi/namespace/location/country">Finland</target:country>
+			<target:timezone>Europe/Mariehamn</target:timezone>
+			<target:region codeSpace="http://xml.fmi.fi/namespace/location/region">Maarianhamina</target:region>	   			
+		    </target:Location></target:member>
+		</target:LocationCollection>
+ 	   </sam:sampledFeature>
+                <sams:shape>
+                    <gml:MultiPoint gml:id="foi-multipoint-1-1-WeatherSymbol3">
+                        <gml:pointMembers> 
+                           <gml:Point gml:id="point-3041732-WeatherSymbol3" srsName="http://www.opengis.net/def/crs/EPSG/0/4258" srsDimension="2">
+                               <gml:name>Mariehamn</gml:name>
+                               <gml:pos>60.09726 19.93481 </gml:pos>
+                           </gml:Point>
+                        </gml:pointMembers>
+                    </gml:MultiPoint>
+                </sams:shape>
+            </sams:SF_SpatialSamplingFeature>
+        </om:featureOfInterest>
+                        <om:result>
+                    <wml2:MeasurementTimeseries gml:id="mts-1-1-WeatherSymbol3">  
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T07:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T08:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T09:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+
+                    </wml2:MeasurementTimeseries>
+                </om:result>
+
+        </omso:PointTimeSeriesObservation>
+    </wfs:member>
+
+    <wfs:member>
+        <omso:PointTimeSeriesObservation gml:id="WFS-r1zOSta3QKOEsXMpYT9j4T69.22JTowtYWbbpdOs2_llx4efR060aeWzDtdOufXlmw48rp1j09NOXm6ddNO3L2w7OuXhh08oWliy59O6pp25bX30KhC.ZamNj5c61ItCnHdOmjJq4Z2XdkqaduW199CoQuGtUJwZtO7JOy4eWXn0rYdmnJIZmfLv05OdZjZmwbtWTS2Ze2XZU88MtTM2b8eHZlrUzab8aSu69MzhrbcPiJp59MO7HlpwBrbdPPnp3Z6mXx0rGnYZzK278mXZXVo08tmHbfy9eW_fw4Yb_DTu6YWVww8sO2tyvlw9NGXlT87cW_YzbnPpv5ZcnHrl5eb.nJXWFm26XTrNv5ZceHn0dOtGnlsw7XTrn15ZsOPK6dY9PTTl5unXTTty9sOzrl4YdPJodNO3LT6ZeE_ITQ6aduW1v3ZaxqtSGA---WeatherSymbol3">
+	                     <om:phenomenonTime>
+                <gml:TimePeriod gml:id="time-interval-1-2">
+                    <gml:beginPosition>2014-08-01T07:00:00Z</gml:beginPosition>
+                    <gml:endPosition>2014-08-01T12:00:00Z</gml:endPosition>
+                </gml:TimePeriod>
+            </om:phenomenonTime>
+            <om:resultTime>
+                <gml:TimeInstant gml:id="time-1-2">
+                    <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition>
+                </gml:TimeInstant>
+            </om:resultTime> 
+
+	    <om:procedure xlink:href="http://xml.fmi.fi/inspire/process/hirlam"/>
+	                <om:parameter>
+                <om:NamedValue>
+                    <om:name xlink:href="http://inspire.ec.europa.eu/codeList/ProcessParameterValue/value/numericalModel/analysisTime"/>
+                    <om:value>
+                        <gml:TimeInstant gml:id="analysis-time-1-2-WeatherSymbol3--"> 
+                            <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition> 
+                        </gml:TimeInstant>
+                    </om:value>
+                </om:NamedValue>
+            </om:parameter>
+
+            <om:observedProperty  xlink:href="http://data.fmi.fi/fmi-apikey/d78b8496-9c5f-4ad1-8ee1-d22fa4d9e786/meta?observableProperty=forecast&amp;param=WeatherSymbol3&amp;language=eng"/>
+	                <om:featureOfInterest>
+                <sams:SF_SpatialSamplingFeature gml:id="enn-s-1-2-WeatherSymbol3">
+          <sam:sampledFeature>
+		<target:LocationCollection gml:id="sampled-target-1-2-WeatherSymbol3">
+		    <target:member>
+		    <target:Location gml:id="forloc-geoid-630752-pos-WeatherSymbol3">
+		        <gml:identifier codeSpace="http://xml.fmi.fi/namespace/stationcode/geoid">630752</gml:identifier>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/name">Ylöjärvi</gml:name>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/geoid">630752</gml:name>
+			<target:representativePoint xlink:href="#point-630752-WeatherSymbol3"/>
+			<target:country codeSpace="http://xml.fmi.fi/namespace/location/country">Finland</target:country>
+			<target:timezone>Europe/Helsinki</target:timezone>
+			<target:region codeSpace="http://xml.fmi.fi/namespace/location/region">Ylöjärvi</target:region>	   			
+		    </target:Location></target:member>
+		</target:LocationCollection>
+ 	   </sam:sampledFeature>
+                <sams:shape>
+                    <gml:MultiPoint gml:id="foi-multipoint-1-2-WeatherSymbol3">
+                        <gml:pointMembers> 
+                           <gml:Point gml:id="point-630752-WeatherSymbol3" srsName="http://www.opengis.net/def/crs/EPSG/0/4258" srsDimension="2">
+                               <gml:name>Ylöjärvi</gml:name>
+                               <gml:pos>61.55632 23.59606 </gml:pos>
+                           </gml:Point>
+                        </gml:pointMembers>
+                    </gml:MultiPoint>
+                </sams:shape>
+            </sams:SF_SpatialSamplingFeature>
+        </om:featureOfInterest>
+                        <om:result>
+                    <wml2:MeasurementTimeseries gml:id="mts-1-2-WeatherSymbol3">  
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T07:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T08:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T09:00:00Z</wml2:time>
+				      <wml2:value>2.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                         
+                    </wml2:MeasurementTimeseries>
+                </om:result>
+
+        </omso:PointTimeSeriesObservation>
+    </wfs:member>
+
+    <wfs:member>
+        <omso:PointTimeSeriesObservation gml:id="WFS-PPyXrauQ1mfOHsT6qukzsBK5pBKJTowtYWbbpdOs2_llx4efR060aeWzDtdOufXlmw48rp1j09NOXm6ddNO3L2w7OuXhh08oWliy59O6pp25bX30KhC.ZamNj5c61ItCnHdOmjJq4Z2XdkqaduW199CoQuGtUJwZtO7JOy4eWXn0rYdmnJIZmfLv05OdZjZmwbtnDS2Ze2XZU88MtTM2b8eHZlrUzab8aSu69MzhrbcPiJp59MO7HlpwBrbdPPnp3Z6mXx0rGnYZzK278mXZXVo08tmHbfy9eW_fw4Yb_DTu6YWVww8sO2tyvlw9NGXlT87cW_YzbnPpv5ZcnHrl5eb.nJXWFm26XTrNv5ZceHn0dOtGnlsw7XTrn15ZsOPK6dY9PTTl5unXTTty9sOzrl4YdPJodNO3LT6ZeE_ITQ6aduW1v3ZaxqtSGA---WeatherSymbol3">
+	                     <om:phenomenonTime>
+                <gml:TimePeriod gml:id="time-interval-1-3">
+                    <gml:beginPosition>2014-08-01T07:00:00Z</gml:beginPosition>
+                    <gml:endPosition>2014-08-01T12:00:00Z</gml:endPosition>
+                </gml:TimePeriod>
+            </om:phenomenonTime>
+            <om:resultTime>
+                <gml:TimeInstant gml:id="time-1-3">
+                    <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition>
+                </gml:TimeInstant>
+            </om:resultTime> 
+
+	    <om:procedure xlink:href="http://xml.fmi.fi/inspire/process/hirlam"/>
+	                <om:parameter>
+                <om:NamedValue>
+                    <om:name xlink:href="http://inspire.ec.europa.eu/codeList/ProcessParameterValue/value/numericalModel/analysisTime"/>
+                    <om:value>
+                        <gml:TimeInstant gml:id="analysis-time-1-3-WeatherSymbol3--"> 
+                            <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition> 
+                        </gml:TimeInstant>
+                    </om:value>
+                </om:NamedValue>
+            </om:parameter>
+
+            <om:observedProperty  xlink:href="http://data.fmi.fi/fmi-apikey/d78b8496-9c5f-4ad1-8ee1-d22fa4d9e786/meta?observableProperty=forecast&amp;param=WeatherSymbol3&amp;language=eng"/>
+	                <om:featureOfInterest>
+                <sams:SF_SpatialSamplingFeature gml:id="enn-s-1-3-WeatherSymbol3">
+          <sam:sampledFeature>
+		<target:LocationCollection gml:id="sampled-target-1-3-WeatherSymbol3">
+		    <target:member>
+		    <target:Location gml:id="forloc-geoid-630768-pos-WeatherSymbol3">
+		        <gml:identifier codeSpace="http://xml.fmi.fi/namespace/stationcode/geoid">630768</gml:identifier>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/name">Ylivieska</gml:name>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/geoid">630768</gml:name>
+			<target:representativePoint xlink:href="#point-630768-WeatherSymbol3"/>
+			<target:country codeSpace="http://xml.fmi.fi/namespace/location/country">Finland</target:country>
+			<target:timezone>Europe/Helsinki</target:timezone>
+			<target:region codeSpace="http://xml.fmi.fi/namespace/location/region">Ylivieska</target:region>	   			
+		    </target:Location></target:member>
+		</target:LocationCollection>
+ 	   </sam:sampledFeature>
+                <sams:shape>
+                    <gml:MultiPoint gml:id="foi-multipoint-1-3-WeatherSymbol3">
+                        <gml:pointMembers> 
+                           <gml:Point gml:id="point-630768-WeatherSymbol3" srsName="http://www.opengis.net/def/crs/EPSG/0/4258" srsDimension="2">
+                               <gml:name>Ylivieska</gml:name>
+                               <gml:pos>64.08333 24.55000 </gml:pos>
+                           </gml:Point>
+                        </gml:pointMembers>
+                    </gml:MultiPoint>
+                </sams:shape>
+            </sams:SF_SpatialSamplingFeature>
+        </om:featureOfInterest>
+                        <om:result>
+                    <wml2:MeasurementTimeseries gml:id="mts-1-3-WeatherSymbol3">  
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T07:00:00Z</wml2:time>
+				      <wml2:value>3.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T08:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T09:00:00Z</wml2:time>
+				      <wml2:value>2.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+             
+                    </wml2:MeasurementTimeseries>
+                </om:result>
+
+        </omso:PointTimeSeriesObservation>
+    </wfs:member>
+
+    <wfs:member>
+        <omso:PointTimeSeriesObservation gml:id="WFS-C19cG52hFQAMEAGokk0efyPjNEmJTowtYWbbpdOs2_llx4efR060aeWzDtdOufXlmw48rp1j09NOXm6ddNO3L2w7OuXhh08oWliy59O6pp25bX30KhC.ZamNj5c61ItCnHdOmjJq4Z2XdkqaduW199CoQuGtUJwZtO7JOy4eWXn0rYdmnJIZmfLv05OdZjZmxZt2zS2Ze2XZU88MtTM2b8eHZlrUzab8aSu69MzhrbcPiJp59MO7HlpwBrbdPPnp3Z6mXx0rGnYZzK278mXZXVo08tmHbfy9eW_fw4Yb_DTu6YWVww8sO2tyvlw9NGXlT87cW_YzbnPpv5ZcnHrl5eb.nJXWFm26XTrNv5ZceHn0dOtGnlsw7XTrn15ZsOPK6dY9PTTl5unXTTty9sOzrl4YdPJodNO3LT6ZeE_ITQ6aduW1v3ZaxqtSGA---WeatherSymbol3">
+	                     <om:phenomenonTime>
+                <gml:TimePeriod gml:id="time-interval-1-4">
+                    <gml:beginPosition>2014-08-01T07:00:00Z</gml:beginPosition>
+                    <gml:endPosition>2014-08-01T12:00:00Z</gml:endPosition>
+                </gml:TimePeriod>
+            </om:phenomenonTime>
+            <om:resultTime>
+                <gml:TimeInstant gml:id="time-1-4">
+                    <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition>
+                </gml:TimeInstant>
+            </om:resultTime> 
+
+	    <om:procedure xlink:href="http://xml.fmi.fi/inspire/process/hirlam"/>
+	                <om:parameter>
+                <om:NamedValue>
+                    <om:name xlink:href="http://inspire.ec.europa.eu/codeList/ProcessParameterValue/value/numericalModel/analysisTime"/>
+                    <om:value>
+                        <gml:TimeInstant gml:id="analysis-time-1-4-WeatherSymbol3--"> 
+                            <gml:timePosition>2014-08-01T00:00:00Z</gml:timePosition> 
+                        </gml:TimeInstant>
+                    </om:value>
+                </om:NamedValue>
+            </om:parameter>
+
+            <om:observedProperty  xlink:href="http://data.fmi.fi/fmi-apikey/d78b8496-9c5f-4ad1-8ee1-d22fa4d9e786/meta?observableProperty=forecast&amp;param=WeatherSymbol3&amp;language=eng"/>
+	                <om:featureOfInterest>
+                <sams:SF_SpatialSamplingFeature gml:id="enn-s-1-4-WeatherSymbol3">
+          <sam:sampledFeature>
+		<target:LocationCollection gml:id="sampled-target-1-4-WeatherSymbol3">
+		    <target:member>
+		    <target:Location gml:id="forloc-geoid-631376-pos-WeatherSymbol3">
+		        <gml:identifier codeSpace="http://xml.fmi.fi/namespace/stationcode/geoid">631376</gml:identifier>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/name">Virrat</gml:name>
+			<gml:name codeSpace="http://xml.fmi.fi/namespace/locationcode/geoid">631376</gml:name>
+			<target:representativePoint xlink:href="#point-631376-WeatherSymbol3"/>
+			<target:country codeSpace="http://xml.fmi.fi/namespace/location/country">Finland</target:country>
+			<target:timezone>Europe/Helsinki</target:timezone>
+			<target:region codeSpace="http://xml.fmi.fi/namespace/location/region">Virrat</target:region>	   			
+		    </target:Location></target:member>
+		</target:LocationCollection>
+ 	   </sam:sampledFeature>
+                <sams:shape>
+                    <gml:MultiPoint gml:id="foi-multipoint-1-4-WeatherSymbol3">
+                        <gml:pointMembers> 
+                           <gml:Point gml:id="point-631376-WeatherSymbol3" srsName="http://www.opengis.net/def/crs/EPSG/0/4258" srsDimension="2">
+                               <gml:name>Virrat</gml:name>
+                               <gml:pos>62.24759 23.78004 </gml:pos>
+                           </gml:Point>
+                        </gml:pointMembers>
+                    </gml:MultiPoint>
+                </sams:shape>
+            </sams:SF_SpatialSamplingFeature>
+        </om:featureOfInterest>
+                        <om:result>
+                    <wml2:MeasurementTimeseries gml:id="mts-1-4-WeatherSymbol3">  
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T07:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T08:00:00Z</wml2:time>
+				      <wml2:value>1.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+                        <wml2:point>
+                            <wml2:MeasurementTVP> 
+                                      <wml2:time>2014-08-01T09:00:00Z</wml2:time>
+				      <wml2:value>2.0</wml2:value> 
+                            </wml2:MeasurementTVP>
+                        </wml2:point>                          
+            
+                    </wml2:MeasurementTimeseries>
+                </om:result>
+
+        </omso:PointTimeSeriesObservation>
+    </wfs:member>
+
+  
+
+</wfs:FeatureCollection>
