@@ -115,7 +115,7 @@ angular.module('weatherAppApp')
 
 
             // handle time of day
-            if (weatherValueTime.getHours() > 20) {
+            if (weatherValueTime.getHours() > 20 || weatherValueTime.getHours() < 6) {
                 iconFileName += "n.png";
             } else {
                 iconFileName += "d.png";

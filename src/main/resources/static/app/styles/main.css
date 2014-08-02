@@ -78,8 +78,13 @@ body {
   }
 }
 
-.angular-google-map-container { height: 600px; width: 400px }
+.angular-google-map-container { height: 600px;  }
 
 .infowindow  { height: 100px; width: 100px }
+
+#div_a {
+	background-color: blue;
+	height:600px;
+}
 
 .buttons { width: 400px }
