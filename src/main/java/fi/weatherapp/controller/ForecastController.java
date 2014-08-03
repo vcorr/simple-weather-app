@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import fi.weatherapp.service.ForecastDTO;
+import fi.weatherapp.service.CityForecastDTO;
 import fi.weatherapp.service.ForecastService;
 
 @RestController
@@ -26,8 +26,10 @@ public class ForecastController {
 	 * @return 6 forecasts per city in JSON
 	 */
 	@RequestMapping(value = "cities", method = RequestMethod.GET, produces = "application/json")
-	public List<ForecastDTO> getForecastsForCities() {
+	public List<CityForecastDTO> getForecastsForCities() {
 		logger.debug("Getting forecasts for cities");
 		return forecastService.getForecastsForCities();
 	}
+	
+	
 }

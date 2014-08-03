@@ -26,23 +26,35 @@ public class ForecastServiceImpl implements ForecastService {
 
 	@Override
 	@Cacheable("forecasts")
-	public List<ForecastDTO> getForecastsForCities() {
+	public List<CityForecastDTO> getForecastsForCities() {
 
 		logger.debug("No cached entries found - Getting current forecasts from DB");
 
 		List<City> cities = cityRepository.findByMajorCityTrue();
-		List<ForecastDTO> forecastList = new ArrayList<ForecastDTO>();
+		List<CityForecastDTO> forecastList = new ArrayList<CityForecastDTO>();
 
 		for (City city : cities) {
-			ForecastDTO dto = new ForecastDTO();
-			dto.setCityName(city.getName());
-			dto.setCityCoords(city.getLat(), city.getLon());
+			CityForecastDTO cityForecastDTO = new CityForecastDTO();
+			cityForecastDTO.setCityName(city.getName());
+			cityForecastDTO.setCityCoords(city.getLat(), city.getLon());
 
-			List<MeasurementDTO> measurements = cityForecastRepository
-					.getMeasurementDTOByCity(city);
-			dto.setMeasurementDTO(measurements);
+			List<MeasurementDTO> symbols = cityForecastRepository
+					.getMeasurementDTOByCityAndType(city, "WeatherSymbol3");
 
-			forecastList.add(dto);
+			List<MeasurementDTO> temps = cityForecastRepository
+					.getMeasurementDTOByCityAndType(city, "Temperature");
+
+			for (int i = 0; i < symbols.size(); i++) {
+				MeasurementDTO tempDTO = temps.get(i);
+				MeasurementDTO symbolDTO = symbols.get(i);
+
+				Forecast forecast = new Forecast(symbolDTO.getDate(),
+						symbolDTO.getValue(), tempDTO.getValue());
+
+				cityForecastDTO.addForecast(forecast);
+			}
+
+			forecastList.add(cityForecastDTO);
 		}
 		return forecastList;
 	}

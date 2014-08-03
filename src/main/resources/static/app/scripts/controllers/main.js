@@ -23,7 +23,6 @@ angular.module('weatherAppApp')
                 panControl: false,
                 mapTypeControl: false,
                 styles: [
-                    //{stylers: [{ lightness: -34 }]},
                     {featureType: "administrative.country",
                         elementType: "labels",
                         stylers: [
@@ -62,8 +61,8 @@ angular.module('weatherAppApp')
 
         $scope.iconindex = 0;
 
+        // switch icons for markers
         $scope.$watch("iconindex", function(newValue, oldValue) {
-            console.log("INDEX: "+$scope.iconindex);
             $scope.parseIcons();
         });
 
@@ -102,15 +101,12 @@ angular.module('weatherAppApp')
 
 
         var parseIcon = function (marker, index) {
-            console.log("using index" + index);
-            var weatherValue = marker.measurementDTO[index];
-            var weatherValueTime = new Date(weatherValue.date);
-            console.log(new Date(weatherValue.date).getHours());
-            console.log(weatherValue.type);
-            console.log(weatherValue.value);
+            var weatherValue = marker.forecasts[index].weatherSymbol;
+
+            var weatherValueTime = new Date(marker.forecasts[index].forecastDate);
             var iconFileName = "";
 
-            var intvalue = Math.round(weatherValue.value);
+            var intvalue = Math.round(weatherValue);
             iconFileName = intvalue;
 
 
@@ -124,12 +120,21 @@ angular.module('weatherAppApp')
             return "../app/images/icons_60x50/" + iconFileName;
         }
 
-
         var onMarkerClicked = function (marker) {
-            marker.showWindow = true;
+
+            var icons= [];
+        	_.each(marker.forecasts, function(dto, index) {
+              icons.push(dto.weatherSymbol);
+              dto.iconFile = parseIcon(marker,index);
+            });
+
+            $scope.selectedMarker = marker;
             $scope.$apply();
-            console.log("MARKER CLICKED :" + marker.measurementDTO[0].value);
         }
+        
+        $scope.selectedMarker = $scope.markers[0];
+        
+         
     })
 ;
 

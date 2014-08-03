@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ForecastService {
 
-	public abstract List<ForecastDTO> getForecastsForCities();
+	public abstract List<CityForecastDTO> getForecastsForCities();
 
 }

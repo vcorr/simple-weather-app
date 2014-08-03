@@ -1,14 +1,15 @@
 package fi.weatherapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ForecastDTO {
+public class CityForecastDTO {
 
 	private String cityName;
 
 	private Coords cityCoords;
 
-	private List<MeasurementDTO> measurementDTO;
+	private List<Forecast> forecasts = new ArrayList();
 
 	public String getCityName() {
 		return cityName;
@@ -28,16 +29,16 @@ public class ForecastDTO {
 		this.cityCoords.lon = lon;
 	}
 
-	public List<MeasurementDTO> getMeasurementDTO() {
-		return measurementDTO;
-	}
-
-	public void setMeasurementDTO(List<MeasurementDTO> measurementDTO) {
-		this.measurementDTO = measurementDTO;
-	}
-
 	private class Coords {
 		public float lat;
 		public float lon;
+	}
+
+	public void addForecast(Forecast forecast) {
+		this.forecasts.add(forecast);
+	}
+
+	public List<Forecast> getForecasts() {
+		return this.forecasts;
 	}
 }

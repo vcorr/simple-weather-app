@@ -1,45 +1,49 @@
 <div class="col-xs-6 col-xs-offset-3">
-	<div class="header">
-   <h2 class="text-muted">Simple Weather App</h3>
+    <div class="header">
+        <h2 class="text-muted">
+            Simple Weather App
+            </h3>
+    </div>
 </div>
-</div>
+
 <div class="col-xs-6 col-xs-offset-3">
-	<div class="col-xs-6">
-		<div class="row">
-			<google-map class="angular-google-map-container" center="map.center"
-				zoom="map.zoom" draggable="true" options="map.options">
-			<markers models="markers" coords="'self'" labelContent="'title'"
-				labelAnchor="22 0" click="'markerClicked'" icon="'icon'">
-			<windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
-			<div>
-				<p>Mexi!</p>
-
-				<p ng-non-bindable>This is an info window at {{ latitude |
-					number:4 }}, {{ longitude | number:4 }}!</p>
-
-				<p class="muted">My marker will stay open when the window is
-					popped up!</p>
-			</div>
-			</windows> </markers> </google-map>
-		</div>
+    <div class="col-xs-6">
+        <div class="row">
+            <google-map class="angular-google-map-container" center="map.center"
+                        zoom="map.zoom" draggable="true" options="map.options">
+                <markers models="markers" coords="'self'" labelContent="'title'"
+                         labelAnchor="22 0" click="'markerClicked'" icon="'icon'">
+                </markers>
+            </google-map>
+        </div>
 
 
-		<div class="row">
-			<div class="btn-group btn-group-justified">
-				<label class="btn btn-primary " ng-model="iconindex" btn-radio="'0'">Current</label>
-				<label class="btn btn-primary " ng-model="iconindex" btn-radio="'1'">+1h</label>
-				<label class="btn btn-primary " ng-model="iconindex" btn-radio="'2'">+2h</label>
-				<label class="btn btn-primary " ng-model="iconindex" btn-radio="'3'">+3h</label>
-				<label class="btn btn-primary " ng-model="iconindex" btn-radio="'4'">+4h</label>
-				<label class="btn btn-primary " ng-model="iconindex" btn-radio="'5'">+5h</label>
-			</div>
-		</div>
-	</div>
+        <div class="row">
+            <div class="btn-group btn-group-justified">
+                <label class="btn btn-primary " ng-model="iconindex" btn-radio="'0'">Nyt</label>
+                <label class="btn btn-primary " ng-model="iconindex" btn-radio="'1'">+1h</label>
+                <label class="btn btn-primary " ng-model="iconindex" btn-radio="'2'">+2h</label>
+                <label class="btn btn-primary " ng-model="iconindex" btn-radio="'3'">+3h</label>
+                <label class="btn btn-primary " ng-model="iconindex" btn-radio="'4'">+4h</label>
+                <label class="btn btn-primary " ng-model="iconindex" btn-radio="'5'">+5h</label>
+            </div>
+        </div>
+    </div>
 
-	<div id="div_a" class="col-xs-6">
 
-		<div class="row">row3</div>
+    <div id="div_a" class="col-xs-6">
+        <h2 class="text-center">{{selectedMarker.id}}</h2>
 
-		<div class="row">row4</div>
-	</div>
+        <p>
+
+        <div ng-repeat="data in selectedMarker.forecasts">
+            <div class="row">
+                <p class="bg-primary">Kello: {{data.forecastDate | date:'HH:mm'}}</p>
+                <img src="{{data.iconFile}}"/>
+
+                {{data.temperature | number:0}} °C
+
+            </div>
+        </div>
+    </div>
 </div>

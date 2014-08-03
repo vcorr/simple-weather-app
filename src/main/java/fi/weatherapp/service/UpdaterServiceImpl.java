@@ -91,6 +91,9 @@ public class UpdaterServiceImpl implements UpdaterService {
 			measurementsQuery += "parameters=" + FMIPARAMS;
 
 			URL myURL = new URL(measurementsQuery);
+			logger.debug("REQUEST:");
+			logger.debug(myURL.toString());
+
 			HttpURLConnection myURLConnection = (HttpURLConnection) myURL
 					.openConnection();
 
@@ -118,7 +121,6 @@ public class UpdaterServiceImpl implements UpdaterService {
 		String timestamp = doc.getChildNodes().item(0).getAttributes()
 				.getNamedItem("timeStamp").getNodeValue();
 		DateTime timestampInDoc = DateTime.parse(timestamp);
-		
 
 		String expression = "//*[local-name()='PointTimeSeriesObservation']";
 
@@ -127,6 +129,9 @@ public class UpdaterServiceImpl implements UpdaterService {
 
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			String name = getLocationName(nodeList.item(i), xPath);
+			String type = getParamType(nodeList.item(i), xPath);
+			
+
 			Map<Date, Measurement> measurementsMap = getValues(
 					nodeList.item(i), xPath);
 
@@ -136,7 +141,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 
 			// get existing forecasts for the city
 			List<CityForecast> forecastList = cityForecastRepository
-					.findByCity(city);
+					.findByCityAndType(city, type);
 
 			for (CityForecast cityForecast : forecastList) {
 				Date forecastDate = cityForecast.getDate();
@@ -155,7 +160,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 						cityForecast.setValue(m.measurementValue);
 						cityForecastRepository.saveAndFlush(cityForecast);
 					}
-					
+
 					measurementsMap.remove(dateTime.toDate());
 					continue;
 				}
@@ -167,12 +172,21 @@ public class UpdaterServiceImpl implements UpdaterService {
 				logger.debug("Adding new entry for " + city.getName());
 				Measurement m = measurementsMap.get(date);
 				CityForecast cityForecast = CityForecast.getBuilder(city,
-						m.measurementTime, "cond", m.measurementValue).build();
+						m.measurementTime, type, m.measurementValue).build();
 				cityForecastRepository.saveAndFlush(cityForecast);
 			}
 		}
 
 		logger.debug("Done.");
+	}
+
+	private String getParamType(Node rootNode, XPath xPath) throws Exception {
+		String childexpressionB = ".//*[local-name()='Location']/@id";
+		String nodeChildListB = (String) xPath.compile(childexpressionB)
+				.evaluate(rootNode, XPathConstants.STRING);
+		String[] stringArray = nodeChildListB.split("-");
+		return stringArray[stringArray.length - 1];
+
 	}
 
 	private String getLocationName(Node rootNode, XPath xPath) throws Exception {
