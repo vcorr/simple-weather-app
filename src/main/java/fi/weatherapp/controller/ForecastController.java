@@ -23,6 +23,7 @@ public class ForecastController {
 
 	/**
 	 * getForecastsForCities
+	 * 
 	 * @return 6 forecasts per city in JSON
 	 */
 	@RequestMapping(value = "cities", method = RequestMethod.GET, produces = "application/json")
@@ -30,6 +31,5 @@ public class ForecastController {
 		logger.debug("Getting forecasts for cities");
 		return forecastService.getForecastsForCities();
 	}
-	
-	
+
 }

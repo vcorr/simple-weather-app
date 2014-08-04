@@ -31,6 +31,8 @@ import org.w3c.dom.NodeList;
 
 import fi.weatherapp.model.City;
 import fi.weatherapp.model.CityForecast;
+import fi.weatherapp.model.TemperatureForecast;
+import fi.weatherapp.model.WeatherConditionForecast;
 import fi.weatherapp.repository.CityForecastRepository;
 import fi.weatherapp.repository.CityRepository;
 
@@ -113,7 +115,6 @@ public class UpdaterServiceImpl implements UpdaterService {
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory
 				.newInstance();
 		DocumentBuilder builder = builderFactory.newDocumentBuilder();
-
 		Document doc = builder.parse(inputStream);
 
 		XPath xPath = XPathFactory.newInstance().newXPath();
@@ -127,10 +128,10 @@ public class UpdaterServiceImpl implements UpdaterService {
 		NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc,
 				XPathConstants.NODESET);
 
+		
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			String name = getLocationName(nodeList.item(i), xPath);
 			String type = getParamType(nodeList.item(i), xPath);
-			
 
 			Map<Date, Measurement> measurementsMap = getValues(
 					nodeList.item(i), xPath);
@@ -139,11 +140,11 @@ public class UpdaterServiceImpl implements UpdaterService {
 			List<City> cityList = cityRepository.findByName(name);
 			City city = cityList.get(0);
 
-			// get existing forecasts for the city
-			List<CityForecast> forecastList = cityForecastRepository
-					.findByCityAndType(city, type);
+			Class<?> forecastClass = getTypeForTypeName(type);
+			List<CityForecast> forecasts = cityForecastRepository
+					.findByCityAndForecastType(city, forecastClass);
 
-			for (CityForecast cityForecast : forecastList) {
+			for (CityForecast cityForecast : forecasts) {
 				Date forecastDate = cityForecast.getDate();
 
 				if (forecastDate.before(timestampInDoc.toDate())) {
@@ -178,6 +179,17 @@ public class UpdaterServiceImpl implements UpdaterService {
 		}
 
 		logger.debug("Done.");
+	}
+	
+	private Class<?> getTypeForTypeName(String typeName) {
+		switch (typeName) {
+		case "WeatherSymbol3":
+			return WeatherConditionForecast.class;
+		case "Temperature":
+			return TemperatureForecast.class;
+		default:
+			return Object.class;
+		}
 	}
 
 	private String getParamType(Node rootNode, XPath xPath) throws Exception {

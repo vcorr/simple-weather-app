@@ -12,11 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-
-public class CityForecast {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class CityForecast {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 
 	@ManyToOne
@@ -24,8 +24,6 @@ public class CityForecast {
 	private City city;
 
 	private Date date;
-
-	private String type;
 
 	private String value;
 
@@ -49,14 +47,6 @@ public class CityForecast {
 		this.date = date;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public String getValue() {
 		return value;
 	}
@@ -73,10 +63,13 @@ public class CityForecast {
 		CityForecast built;
 
 		Builder(City city, Date date, String type, String value) {
-			built = new CityForecast();
+			if(type.equals("WeatherSymbol3")) {
+				built = new WeatherConditionForecast();
+			}else if(type.equals("Temperature")) {
+				built = new TemperatureForecast();
+			}
 			built.city = city;
 			built.date = date;
-			built.type = type;
 			built.value = value;
 		}
 

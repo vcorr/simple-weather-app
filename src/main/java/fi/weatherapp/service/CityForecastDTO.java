@@ -9,7 +9,7 @@ public class CityForecastDTO {
 
 	private Coords cityCoords;
 
-	private List<Forecast> forecasts = new ArrayList();
+	private List<ForecastDTO> forecasts = new ArrayList<ForecastDTO>();
 
 	public String getCityName() {
 		return cityName;
@@ -29,16 +29,17 @@ public class CityForecastDTO {
 		this.cityCoords.lon = lon;
 	}
 
+	public List<ForecastDTO> getForecasts() {
+		return this.forecasts;
+	}
+
 	private class Coords {
 		public float lat;
 		public float lon;
 	}
 
-	public void addForecast(Forecast forecast) {
-		this.forecasts.add(forecast);
-	}
+	public void addForecasts(List<ForecastDTO> forecasts) {
+		this.forecasts = forecasts;
 
-	public List<Forecast> getForecasts() {
-		return this.forecasts;
 	}
 }

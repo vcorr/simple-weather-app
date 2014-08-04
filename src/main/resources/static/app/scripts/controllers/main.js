@@ -105,10 +105,7 @@ angular.module('weatherAppApp')
 
             var weatherValueTime = new Date(marker.forecasts[index].forecastDate);
             var iconFileName = "";
-
-            var intvalue = Math.round(weatherValue);
-            iconFileName = intvalue;
-
+            iconFileName =  Math.round(weatherValue);
 
             // handle time of day
             if (weatherValueTime.getHours() > 20 || weatherValueTime.getHours() < 6) {

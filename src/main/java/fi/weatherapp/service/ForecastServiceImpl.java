@@ -38,21 +38,10 @@ public class ForecastServiceImpl implements ForecastService {
 			cityForecastDTO.setCityName(city.getName());
 			cityForecastDTO.setCityCoords(city.getLat(), city.getLon());
 
-			List<MeasurementDTO> symbols = cityForecastRepository
-					.getMeasurementDTOByCityAndType(city, "WeatherSymbol3");
+			List<ForecastDTO> forecasts = cityForecastRepository
+					.getForecastsForCity(city);
 
-			List<MeasurementDTO> temps = cityForecastRepository
-					.getMeasurementDTOByCityAndType(city, "Temperature");
-
-			for (int i = 0; i < symbols.size(); i++) {
-				MeasurementDTO tempDTO = temps.get(i);
-				MeasurementDTO symbolDTO = symbols.get(i);
-
-				Forecast forecast = new Forecast(symbolDTO.getDate(),
-						symbolDTO.getValue(), tempDTO.getValue());
-
-				cityForecastDTO.addForecast(forecast);
-			}
+			cityForecastDTO.addForecasts(forecasts);
 
 			forecastList.add(cityForecastDTO);
 		}
