@@ -1,7 +1,6 @@
 package fi.weatherapp.controller;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.TestExecutionListeners;
@@ -14,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
+
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
