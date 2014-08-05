@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<city id="2" lat="1" lon="1" name="Ylivieska" major_city="1" />
+	<city id="3" lat="1" lon="1" name="Mariehamn"  major_city="1" />
+	<city id="4" lat="1" lon="1" name="Virrat"  major_city="1" />
+	
+	<weather_condition_forecast  id="100" date="2014-08-01 08:00:00" value="1.0" city_id="3" />
+	<weather_condition_forecast  id="101" date="2014-08-01 07:00:00" value="2.0" city_id="3" />
+	<weather_condition_forecast  id="102" date="2014-08-01 09:00:00" value="1.0" city_id="3" />
+	
+	<temperature_forecast  id="103" date="2014-08-01 08:00:00" value="22" city_id="3" />
+	<temperature_forecast  id="104" date="2014-08-01 07:00:00" value="18" city_id="3" />
+	<temperature_forecast  id="105" date="2014-08-01 09:00:00" value="24" city_id="3" />
+</dataset>
