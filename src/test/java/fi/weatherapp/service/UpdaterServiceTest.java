@@ -46,20 +46,19 @@ public class UpdaterServiceTest {
 		updaterService.fetchDataForCities();
 	}
 
-	@Ignore
 	@Test
-	@DatabaseSetup(value = "updatableForecasts.xml", type = DatabaseOperation.CLEAN_INSERT)
-	@ExpectedDatabase(value = "endData.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
-	@DatabaseTearDown(value = "EmptyData.xml", type = DatabaseOperation.DELETE_ALL)
+	@DatabaseSetup(value = "/dbunit/updatableForecasts.xml", type = DatabaseOperation.CLEAN_INSERT)
+	@ExpectedDatabase(value = "/dbunit/endData.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@DatabaseTearDown(value = "/dbunit/EmptyData.xml", type = DatabaseOperation.DELETE_ALL)
 	public void testFetchingNewForecastsAndUpdating() throws Exception {
 		updaterService.fetchDataForCities();
 	}
 
-	@Ignore
+	
 	@Test
-	@DatabaseSetup(value = "updatableForecastsWithStale.xml", type = DatabaseOperation.CLEAN_INSERT)
-	@ExpectedDatabase(value = "endData.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
-	@DatabaseTearDown(value = "EmptyData.xml", type = DatabaseOperation.DELETE_ALL)
+	@DatabaseSetup(value = "/dbunit/updatableForecastsWithStale.xml", type = DatabaseOperation.CLEAN_INSERT)
+	@ExpectedDatabase(value = "/dbunit/endData.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@DatabaseTearDown(value = "/dbunit/EmptyData.xml", type = DatabaseOperation.DELETE_ALL)
 	public void testFetchingNewForecastsAndDeleteStaleEntries()
 			throws Exception {
 		updaterService.fetchDataForCities();

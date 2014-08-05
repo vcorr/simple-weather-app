@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<city id="1" lat="1" lon="1" name="Ylöjärvi"  major_city="1" />
+	<city id="2" lat="1" lon="1" name="Ylivieska" major_city="1" />
+	<city id="3" lat="1" lon="1" name="Mariehamn"  major_city="1" />
+	<city id="4" lat="1" lon="1" name="Virrat"  major_city="1" />
+	
+	<weather_condition_forecast id="100"  date="2014-08-01 08:00:00" value="1.0" city_id="3" />
+	<weather_condition_forecast id="101"  date="2014-08-01 07:00:00" value="1.0" city_id="3" />
+	<weather_condition_forecast id="102"  date="2014-08-01 09:00:00" value="1.0" city_id="3" />
+	
+	<weather_condition_forecast id="200"  date="2014-08-01 08:00:00" value="1.0" city_id="1" />
+	<weather_condition_forecast id="201"  date="2014-08-01 07:00:00" value="1.0" city_id="1" />
+	<weather_condition_forecast id="202"  date="2014-08-01 09:00:00" value="1.0" city_id="1" />
+	
+	<weather_condition_forecast id="300"  date="2014-08-01 08:00:00" value="1.0" city_id="2" />
+	<weather_condition_forecast id="301"  date="2014-08-01 07:00:00" value="1.0" city_id="2" />
+	<weather_condition_forecast id="302"  date="2014-08-01 09:00:00" value="1.0" city_id="2" />
+	
+	<weather_condition_forecast id="400"  date="2014-08-01 08:00:00" value="1.0" city_id="4" />
+	<weather_condition_forecast id="401"  date="2014-08-01 07:00:00" value="1.0" city_id="4" />
+	<weather_condition_forecast id="402"  date="2014-08-01 09:00:00" value="1.0" city_id="4" />
+</dataset>

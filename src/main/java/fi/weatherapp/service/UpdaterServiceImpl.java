@@ -149,24 +149,25 @@ public class UpdaterServiceImpl implements UpdaterService {
 					.findByCityAndForecastType(city, forecastClass);
 
 			for (CityForecast cityForecast : forecasts) {
-				DateTime forecastDate = cityForecast.getDate();
-
+				DateTime forecastDate = cityForecast.getDate().withZone(DateTimeZone.UTC);
+				
+				
 				if (forecastDate.isBefore(timestampInDoc)) {
 					logger.debug("Deleting forecast that occures before current time");
 					cityForecastRepository.delete(cityForecast.getId());
 					continue;
 				}
 
-				DateTime dateTime = new DateTime(cityForecast.getDate());
-				if (measurementsMap.containsKey(dateTime.toDate())) {
-					Measurement m = measurementsMap.get(dateTime.toDate());
+				
+				if (measurementsMap.containsKey(forecastDate)) {
+					Measurement m = measurementsMap.get(forecastDate);
 					if (!cityForecast.getValue().equals(m.measurementValue)) {
 						logger.debug("Fetched forecast is different than the saved one, updating");
 						cityForecast.setValue(m.measurementValue);
 						cityForecastRepository.saveAndFlush(cityForecast);
 					}
 
-					measurementsMap.remove(dateTime.toDate());
+					measurementsMap.remove(forecastDate);
 					continue;
 				}
 			}

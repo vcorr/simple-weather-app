@@ -18,6 +18,6 @@ public interface CityForecastRepository extends
 			@Param("city") City city, @Param("type") Class<?> type);
 
 	@Query("Select new fi.weatherapp.service.ForecastDTO(wf.date, wf.value, tf.value)"
-			+ " from WeatherConditionForecast wf, TemperatureForecast tf where wf.city = :city and tf.city = :city and wf.date = tf.date")
+			+ " from WeatherConditionForecast wf, TemperatureForecast tf where wf.city = :city and tf.city = :city and wf.date = tf.date ORDER BY wf.date")
 	public List<ForecastDTO> getForecastsForCity(@Param("city") City city);
 }
