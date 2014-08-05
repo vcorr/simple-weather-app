@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
 	<city/>
-	<city_forecast/>
+	<temperature_forecast/>
+	<weather_condition_forecast/>
 </dataset>
