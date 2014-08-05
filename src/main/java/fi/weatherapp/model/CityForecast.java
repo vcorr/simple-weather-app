@@ -1,7 +1,5 @@
 package fi.weatherapp.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +8,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -23,7 +24,8 @@ public abstract class CityForecast {
 	@JoinColumn(name = "city_id")
 	private City city;
 
-	private Date date;
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime date;
 
 	private String value;
 
@@ -39,11 +41,11 @@ public abstract class CityForecast {
 		this.city = city;
 	}
 
-	public Date getDate() {
+	public DateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(DateTime date) {
 		this.date = date;
 	}
 
@@ -55,14 +57,14 @@ public abstract class CityForecast {
 		this.value = value;
 	}
 
-	public static Builder getBuilder(City city, Date date, String type, String value) {
+	public static Builder getBuilder(City city, DateTime date, String type, String value) {
 		return new Builder(city, date, type, value);
 	}
 
 	public static class Builder {
 		CityForecast built;
 
-		Builder(City city, Date date, String type, String value) {
+		Builder(City city, DateTime date, String type, String value) {
 			if(type.equals("WeatherSymbol3")) {
 				built = new WeatherConditionForecast();
 			}else if(type.equals("Temperature")) {

@@ -137,7 +137,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 			String name = getLocationName(nodeList.item(i), xPath);
 			String type = getParamType(nodeList.item(i), xPath);
 
-			Map<Date, Measurement> measurementsMap = getValues(
+			Map<DateTime, Measurement> measurementsMap = getValues(
 					nodeList.item(i), xPath);
 
 			// should return exactly 1 city
@@ -149,9 +149,9 @@ public class UpdaterServiceImpl implements UpdaterService {
 					.findByCityAndForecastType(city, forecastClass);
 
 			for (CityForecast cityForecast : forecasts) {
-				Date forecastDate = cityForecast.getDate();
+				DateTime forecastDate = cityForecast.getDate();
 
-				if (forecastDate.before(timestampInDoc.toDate())) {
+				if (forecastDate.isBefore(timestampInDoc)) {
 					logger.debug("Deleting forecast that occures before current time");
 					cityForecastRepository.delete(cityForecast.getId());
 					continue;
@@ -172,8 +172,8 @@ public class UpdaterServiceImpl implements UpdaterService {
 			}
 
 			// get remaining measurements and add them to the city as new
-			java.util.Set<Date> keys = measurementsMap.keySet();
-			for (Date date : keys) {
+			java.util.Set<DateTime> keys = measurementsMap.keySet();
+			for (DateTime date : keys) {
 				logger.debug("Adding new entry for " + city.getName());
 				Measurement m = measurementsMap.get(date);
 				CityForecast cityForecast = CityForecast.getBuilder(city,
@@ -212,10 +212,10 @@ public class UpdaterServiceImpl implements UpdaterService {
 		return nodeChildList.item(0).getTextContent();
 	}
 
-	private Map<Date, Measurement> getValues(Node rootNode, XPath xPath)
+	private Map<DateTime, Measurement> getValues(Node rootNode, XPath xPath)
 			throws Exception {
 
-		Map<Date, Measurement> measurementMap = new HashMap<Date, Measurement>();
+		Map<DateTime, Measurement> measurementMap = new HashMap<DateTime, Measurement>();
 
 		NodeList measurementTimeList = (NodeList) xPath.compile(
 				".//*[local-name()='MeasurementTVP']/time").evaluate(rootNode,
@@ -227,8 +227,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 
 		for (int i = 0; i < measurementTimeList.getLength(); i++) {
 			Measurement measurement = new Measurement();
-			measurement.measurementTime = DateTime.parse(measurementTimeList.item(i).getTextContent()).toDateTimeISO().toDate();
-			System.out.println("MEASUREMENT TIME"+measurement.measurementTime);
+			measurement.measurementTime = DateTime.parse(measurementTimeList.item(i).getTextContent());
 			measurement.measurementValue = measurementValueList.item(i)
 					.getTextContent();
 			measurementMap.put(measurement.measurementTime, measurement);
@@ -238,7 +237,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 	}
 
 	private class Measurement {
-		public Date measurementTime;
+		public DateTime measurementTime;
 		public String measurementValue;
 	}
 }

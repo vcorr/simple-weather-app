@@ -2,6 +2,8 @@ package fi.weatherapp.service;
 
 import java.util.Date;
 
+import org.joda.time.DateTime;
+
 public class ForecastDTO {
 
 	private Date forecastDate;
@@ -10,9 +12,9 @@ public class ForecastDTO {
 	
 	private String tempValue;
 
-	public ForecastDTO(Date date, String symbolValue, String tempValue) {
+	public ForecastDTO(DateTime date, String symbolValue, String tempValue) {
 		
-		this.forecastDate = date;
+		this.forecastDate = date.toDate();
 		this.weatherSymbol = symbolValue;
 		this.tempValue = tempValue;
 	}
