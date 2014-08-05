@@ -77,10 +77,6 @@ public class UpdaterServiceImpl implements UpdaterService {
 	@CacheEvict("forecasts")
 	public void fetchDataForCities() throws Exception {
 		
-		Set<String> ids = DateTimeZone.getAvailableIDs();
-		for(String id : ids) {
-			System.out.println("ID="+id);
-		}
 		
 		logger.debug("Getting new forecasts from FMI");
 
@@ -231,8 +227,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 
 		for (int i = 0; i < measurementTimeList.getLength(); i++) {
 			Measurement measurement = new Measurement();
-			measurement.measurementTime = DateTime.parse(
-					measurementTimeList.item(i).getTextContent()).toDateTime(timezone).toDate();
+			measurement.measurementTime = DateTime.parse(measurementTimeList.item(i).getTextContent()).toDateTimeISO().toDate();
 			System.out.println("MEASUREMENT TIME"+measurement.measurementTime);
 			measurement.measurementValue = measurementValueList.item(i)
 					.getTextContent();
