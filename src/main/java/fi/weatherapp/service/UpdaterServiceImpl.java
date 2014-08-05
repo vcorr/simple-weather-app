@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
@@ -63,6 +64,8 @@ public class UpdaterServiceImpl implements UpdaterService {
 	private DateTimeFormatter formatter = ISODateTimeFormat
 			.dateHourMinuteSecond();
 	private Logger logger = Logger.getLogger(UpdaterService.class);
+	
+	private DateTimeZone timezone = DateTimeZone.forID("Europe/Helsinki");
 
 	/***
 	 * fetchDataForCities
@@ -73,7 +76,12 @@ public class UpdaterServiceImpl implements UpdaterService {
 	@Override
 	@CacheEvict("forecasts")
 	public void fetchDataForCities() throws Exception {
-
+		
+		Set<String> ids = DateTimeZone.getAvailableIDs();
+		for(String id : ids) {
+			System.out.println("ID="+id);
+		}
+		
 		logger.debug("Getting new forecasts from FMI");
 
 		String measurementsQuery = "";
@@ -224,7 +232,8 @@ public class UpdaterServiceImpl implements UpdaterService {
 		for (int i = 0; i < measurementTimeList.getLength(); i++) {
 			Measurement measurement = new Measurement();
 			measurement.measurementTime = DateTime.parse(
-					measurementTimeList.item(i).getTextContent()).toDate();
+					measurementTimeList.item(i).getTextContent()).toDateTime(timezone).toDate();
+			System.out.println("MEASUREMENT TIME"+measurement.measurementTime);
 			measurement.measurementValue = measurementValueList.item(i)
 					.getTextContent();
 			measurementMap.put(measurement.measurementTime, measurement);
