@@ -1,7 +1,7 @@
 Simple Weather App
 ==================
 
-[![Build Status](http://ec2-54-77-27-227.eu-west-1.compute.amazonaws.com:8080/buildStatus/icon?job=simple-weather-app)](http://ec2-54-77-27-227.eu-west-1.compute.amazonaws.com:8080/job/simple-weather-app/)
+[![Build Status](http://ec2-54-77-108-37.eu-west-1.compute.amazonaws.com:8080/buildStatus/icon?job=weather app)](http://ec2-54-77-108-37.eu-west-1.compute.amazonaws.com:8080/job/weather%20app/)
 
 This is a super simple demonstration on how to utilize FMI's (Finnish Meteorological Institute) open data interface.
 
