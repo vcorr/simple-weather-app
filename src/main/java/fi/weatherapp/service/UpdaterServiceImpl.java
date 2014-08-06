@@ -5,11 +5,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
@@ -65,8 +63,7 @@ public class UpdaterServiceImpl implements UpdaterService {
 			.dateHourMinuteSecond();
 	private Logger logger = Logger.getLogger(UpdaterService.class);
 	
-	private DateTimeZone timezone = DateTimeZone.forID("Europe/Helsinki");
-
+	
 	/***
 	 * fetchDataForCities
 	 * 

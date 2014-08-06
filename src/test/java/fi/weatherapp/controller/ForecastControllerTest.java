@@ -79,8 +79,5 @@ public class ForecastControllerTest {
                 .andExpect(jsonPath("$[1].forecasts[2].forecastDate", is(1406883600000L)))
                 .andExpect(jsonPath("$[1].forecasts[2].weatherSymbol", is("1.0")))
                 .andExpect(jsonPath("$[1].forecasts[2].tempValue", is("24")));
-
-
-
 	}
 }

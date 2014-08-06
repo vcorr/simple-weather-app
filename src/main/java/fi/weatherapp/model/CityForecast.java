@@ -1,6 +1,5 @@
 package fi.weatherapp.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +24,7 @@ public abstract class CityForecast {
 	@JoinColumn(name = "city_id")
 	private City city;
 
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime date;
 
 	private String value;
@@ -58,7 +57,8 @@ public abstract class CityForecast {
 		this.value = value;
 	}
 
-	public static Builder getBuilder(City city, DateTime date, String type, String value) {
+	public static Builder getBuilder(City city, DateTime date, String type,
+			String value) {
 		return new Builder(city, date, type, value);
 	}
 
@@ -66,9 +66,9 @@ public abstract class CityForecast {
 		CityForecast built;
 
 		Builder(City city, DateTime date, String type, String value) {
-			if(type.equals("WeatherSymbol3")) {
+			if (type.equals("WeatherSymbol3")) {
 				built = new WeatherConditionForecast();
-			}else if(type.equals("Temperature")) {
+			} else if (type.equals("Temperature")) {
 				built = new TemperatureForecast();
 			}
 			built.city = city;
