@@ -5,7 +5,7 @@
  * @name weatherAppApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the weatherAppApp
+ * Controller of the weatherApp
  */
 angular.module('weatherAppApp')
     .controller('MainCtrl', function ($scope, CityForecasts) {
@@ -53,10 +53,8 @@ angular.module('weatherAppApp')
                             { color: "#212180" }
                         ]
                     }
-
                 ]
             }
-
         };
 
         $scope.iconindex = 0;
@@ -70,12 +68,10 @@ angular.module('weatherAppApp')
             console.log("success");
             console.log($scope.markers.length);
             prepareMarkers();
-
         });
 
         var prepareMarkers = function () {
             _.each($scope.markers, function (marker) {
-
                 marker.id = marker.cityName;
                 marker.latitude = marker.cityCoords.lat;
                 marker.longitude = marker.cityCoords.lon;
@@ -89,7 +85,6 @@ angular.module('weatherAppApp')
                 marker.markerClicked = function () {
                     onMarkerClicked(marker);
                 }
-
             });
         }
 
@@ -106,7 +101,6 @@ angular.module('weatherAppApp')
             var weatherValueTime = new Date(marker.forecasts[index].forecastDate);
             var iconFileName = "";
             iconFileName =  Math.round(weatherValue);
-
             // handle time of day
             if (weatherValueTime.getHours() > 20 || weatherValueTime.getHours() < 6) {
                 iconFileName += "n.png";
@@ -130,26 +124,6 @@ angular.module('weatherAppApp')
         }
         
         $scope.selectedMarker = $scope.markers[0];
-        
-         
     })
 ;
 
-/*        $scope.markers = [
- {
- id:1,
- latitude: 62.42,
- longitude: 23.62,
- title: "Tampere Pirkkala",
- showWindow: false
- },
-
- {
- id:2,
- latitude: 61.47,
- longitude: 23.75,
- title: "Tampere Härmälä",
- showWindow: false,
- icon: '../app/images/icons_60x50/08d.png'
- }
- ];*/
