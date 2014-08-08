@@ -1,5 +1,7 @@
 package fi.weatherapp;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -31,10 +33,11 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Scheduled(fixedRate = 60 * 60 * 1000)
+	// weather model is updated  at 00, 06, 12 and 18 UTC. Let's wait 15 mins after update and then refresh the forecasts	
+	@Scheduled(cron = "0 15 0,6,12,18 * * *")
 	private void updateStationData() {
 		try {
-			logger.debug("Fetching fresh data from FMI");
+			logger.debug("Fetching fresh data from FMI, current time is:"+new Date());
 			updaterService.fetchDataForCities();
 		} catch (Exception e) {
 			logger.error("Failed to fetch new forecasts:");
